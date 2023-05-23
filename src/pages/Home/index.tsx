@@ -1,39 +1,48 @@
 import { Header } from "../../components/Header";
+import * as s from "./styles";
+import {
+  Users,
+  GithubLogo,
+  Buildings,
+  ArrowSquareUpRight,
+} from "phosphor-react";
 
 export function Home() {
   return (
     <>
       <Header />
-      <main>
-        <section>
+      <s.HomeContainer>
+        <s.ProfileContainer>
           <img
             src="https://github.com/viniciusmartins1.png"
             alt="Imagem de perfil"
           />
-          <div>
-            <div>
+          <s.ProfileContent>
+            <s.ProfileTitle>
               <h2>Vinicius Martins</h2>
-              <a href="https://github.com/viniciusmartins1"></a>
-            </div>
-            <p>
+              <a href="https://github.com/viniciusmartins1">
+                github <ArrowSquareUpRight size={24} />{" "}
+              </a>
+            </s.ProfileTitle>
+            <s.ProfileDetais>
               Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
               viverra massa quam dignissim aenean malesuada suscipit. Nunc,
               volutpat pulvinar vel mass.
-            </p>
+            </s.ProfileDetais>
 
-            <div>
+            <s.ProfileInfos>
               <p>
-                <span></span> cameronwll
+                <GithubLogo size={18} /> cameronwll
               </p>
               <p>
-                <span></span> Rocketseat
+                <Buildings size={18} /> Rocketseat
               </p>
               <p>
-                <span></span> 32 seguidores
+                <Users size={18} /> 32 seguidores
               </p>
-            </div>
-          </div>
-        </section>
+            </s.ProfileInfos>
+          </s.ProfileContent>
+        </s.ProfileContainer>
 
         <section>
           <div>
@@ -58,7 +67,7 @@ export function Home() {
             </p>
           </div>
         </section>
-      </main>
+      </s.HomeContainer>
     </>
   );
 }
