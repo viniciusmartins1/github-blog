@@ -45,12 +45,12 @@ export function Home() {
         </s.ProfileContainer>
 
         <section>
-          <div>
+          <s.Publications>
             <h3>Publicações</h3>
             <p>6 publicações</p>
-          </div>
+          </s.Publications>
           <form action="">
-            <input type="text" placeholder="Buscar conteúdo" />
+            <s.InputSearch type="text" placeholder="Buscar conteúdo" />
           </form>
         </section>
 
