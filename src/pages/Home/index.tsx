@@ -54,8 +54,8 @@ export function Home() {
           </form>
         </section>
 
-        <section>
-          <div>
+        <s.ListCardPosts>
+          <s.CardPost>
             <div>
               <h3>JavaScript data types and data structures</h3>
               <p>Há 1 dia</p>
@@ -63,10 +63,47 @@ export function Home() {
             <p>
               Programming languages all have built-in data structures, but these
               often differ from one language to another. This article attempts
-              to list the built-in data structures available in
+              to list the built-in data structures available in to list the
+              built-in data structures available in
             </p>
-          </div>
-        </section>
+          </s.CardPost>
+          <s.CardPost>
+            <div>
+              <h3>JavaScript data types and data structures</h3>
+              <p>Há 1 dia</p>
+            </div>
+            <p>
+              Programming languages all have built-in data structures, but these
+              often differ from one language to another. This article attempts
+              to list the built-in data structures available in to list the
+              built-in data structures available in
+            </p>
+          </s.CardPost>
+          <s.CardPost>
+            <div>
+              <h3>JavaScript data types and data structures</h3>
+              <p>Há 1 dia</p>
+            </div>
+            <p>
+              Programming languages all have built-in data structures, but these
+              often differ from one language to another. This article attempts
+              to list the built-in data structures available in to list the
+              built-in data structures available in
+            </p>
+          </s.CardPost>
+          <s.CardPost>
+            <div>
+              <h3>JavaScript data types and data structures</h3>
+              <p>Há 1 dia</p>
+            </div>
+            <p>
+              Programming languages all have built-in data structures, but these
+              often differ from one language to another. This article attempts
+              to list the built-in data structures available in to list the
+              built-in data structures available in
+            </p>
+          </s.CardPost>
+        </s.ListCardPosts>
       </s.HomeContainer>
     </>
   );
