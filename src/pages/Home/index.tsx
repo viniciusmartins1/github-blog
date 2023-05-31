@@ -20,7 +20,7 @@ export function Home() {
           <s.ProfileContent>
             <s.ProfileTitle>
               <h2>Vinicius Martins</h2>
-              <a href="https://github.com/viniciusmartins1">
+              <a target="_blank" href="https://github.com/viniciusmartins1">
                 github <ArrowSquareUpRight size={24} />{" "}
               </a>
             </s.ProfileTitle>
