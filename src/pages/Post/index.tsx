@@ -39,9 +39,9 @@ export function Post() {
             </p>
           </s.PostInfos>
         </s.PostInfoContainer>
-        <section>
+        <s.PostDetails>
           <ReactMarkdown>`teste`</ReactMarkdown>
-        </section>
+        </s.PostDetails>
       </s.PostContainer>
     </>
   );

@@ -83,3 +83,7 @@ export const PostInfos = styled.div`
     gap: 0.5rem;
   }
 `;
+
+export const PostDetails = styled.section`
+  padding: 2.5rem 2rem;
+`;
