@@ -5,36 +5,36 @@ import {
   Users,
 } from "phosphor-react";
 import * as s from "./styles";
+import { IProfile } from "../..";
 
-export function ProfileHeader() {
+interface IProfileHeaderProps {
+  profile: IProfile | null;
+}
+
+export function ProfileHeader({ profile }: IProfileHeaderProps) {
   return (
     <s.ProfileContainer>
-      <img
-        src="https://github.com/viniciusmartins1.png"
-        alt="Imagem de perfil"
-      />
+      <img src={profile?.avatar_url} alt="Imagem de perfil" />
       <s.ProfileContent>
         <s.ProfileTitle>
-          <h2>Vinicius Martins</h2>
-          <a target="_blank" href="https://github.com/viniciusmartins1">
+          <h2>{profile?.name}</h2>
+          <a target="_blank" href={profile?.html_url}>
             github <ArrowSquareUpRight weight="duotone" size={24} />{" "}
           </a>
         </s.ProfileTitle>
-        <s.ProfileDetais>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </s.ProfileDetais>
+        <s.ProfileDetais>{profile?.bio}</s.ProfileDetais>
 
         <s.ProfileInfos>
           <p>
-            <GithubLogo size={18} /> cameronwll
+            <GithubLogo size={18} /> {profile?.login}
           </p>
+          {!!profile?.company && (
+            <p>
+              <Buildings size={18} /> {profile?.company}
+            </p>
+          )}
           <p>
-            <Buildings size={18} /> Rocketseat
-          </p>
-          <p>
-            <Users size={18} /> 32 seguidores
+            <Users size={18} /> {profile?.followers} seguidores
           </p>
         </s.ProfileInfos>
       </s.ProfileContent>

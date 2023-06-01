@@ -24,10 +24,12 @@ export const ProfileContent = styled.div`
 export const ProfileTitle = styled.div`
   display: flex;
   justify-content: space-between;
+
   h2 {
     font-size: 1.5rem;
     color: ${({ theme }) => theme["gray-100"]};
     line-height: 1.95rem;
+    flex: 1;
   }
 
   a {
