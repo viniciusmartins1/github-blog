@@ -19,6 +19,7 @@ export const ProfileContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
 `;
 
 export const ProfileTitle = styled.div`
@@ -29,7 +30,6 @@ export const ProfileTitle = styled.div`
     font-size: 1.5rem;
     color: ${({ theme }) => theme["gray-100"]};
     line-height: 1.95rem;
-    flex: 1;
   }
 
   a {
