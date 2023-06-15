@@ -1,9 +1,12 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { Header } from "../../components/Header";
 import { CardPost } from "./components/CardPost";
 import { ProfileHeader } from "./components/ProfileHeader";
+import { Loading } from "../../components/Loading";
 import * as s from "./styles";
 import { api } from "../../api";
+import { debounce } from "lodash";
+
 export interface IProfile {
   name: string;
   bio: string;
@@ -29,39 +32,51 @@ export function Home() {
   const [issues, setIssues] = useState<IIssues[] | null>(null);
   const [search, setSearch] = useState<string>("Boas praticas");
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function getProfileDetails() {
+    setLoading(true);
     const response = await api.get(`/users/${PROFILE_NAME}`);
     const data = await response.data;
 
     setProfileData({ ...data });
+    setLoading(false);
   }
 
   async function getIssues(query: string) {
-    const response = await api.get("/search/issues", {
-      params: {
-        q: query,
-        repo: PROFILE_NAME + "/" + REPO_NAME,
-      },
-    });
+    setLoading(true);
+    const response = await api.get(
+      `/search/issues?q=${query} repo:${PROFILE_NAME}/${REPO_NAME}`
+    );
     const data = await response.data;
-    console.log("Issues", data);
 
     setIssues([...data.items]);
     setTotalCount(data.total_count);
+    setLoading(false);
   }
 
   useEffect(() => {
     getProfileDetails();
     getIssues(search);
-  }, [getProfileDetails]);
+  }, []);
+
+  const debouncedSearch = useRef(
+    debounce((search: string) => {
+      getIssues(search);
+    }, 1000)
+  ).current;
 
   function handleOnChangeSearchInput(event: ChangeEvent<HTMLInputElement>) {
-    console.log("VALUE", event.target.value);
+    const searchText = event.target.value;
+    if (!searchText.trim()) return;
+
+    setSearch(searchText);
+    debouncedSearch(searchText);
   }
 
   return (
     <>
+      {loading && <Loading />}
       <Header />
       <s.HomeContainer>
         <ProfileHeader profile={profileData} />
