@@ -44,6 +44,7 @@ export const InfoLinksContainer = styled.div`
   button {
     background-color: transparent;
     border: 0;
+    cursor: pointer;
   }
 `;
 
