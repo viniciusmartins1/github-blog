@@ -5,6 +5,7 @@ export const CardContainer = styled.div`
   background: ${({ theme }) => theme["gray-700"]};
   padding: 2rem;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
 export const TitleDetais = styled.div`

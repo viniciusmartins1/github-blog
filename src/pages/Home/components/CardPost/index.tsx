@@ -1,22 +1,19 @@
 import { IIssues } from "../..";
 import * as s from "./styles";
-import { formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { publishedDateRelativeToNow } from "../../../../utils/formatter";
 
 interface ICardPost {
   item: IIssues;
+  onClick: (number: number) => void;
 }
 
-export function CardPost({ item }: ICardPost) {
-  function publishedDateRelativeToNow(date: string) {
-    return formatDistanceToNow(new Date(date), {
-      locale: ptBR,
-      addSuffix: true,
-    });
+export function CardPost({ item, onClick }: ICardPost) {
+  function handleOnClickCard() {
+    onClick(item.number);
   }
 
   return (
-    <s.CardContainer>
+    <s.CardContainer onClick={() => handleOnClickCard()}>
       <s.TitleDetais>
         <h3>{item.title}</h3>
         <p>{publishedDateRelativeToNow(item.created_at)}</p>
