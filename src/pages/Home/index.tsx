@@ -4,8 +4,9 @@ import { CardPost } from "./components/CardPost";
 import { ProfileHeader } from "./components/ProfileHeader";
 import { Loading } from "../../components/Loading";
 import * as s from "./styles";
-import { api } from "../../api";
+import { PROFILE_NAME, REPO_NAME, api } from "../../api";
 import { debounce } from "lodash";
+import { useNavigate } from "react-router-dom";
 
 export interface IProfile {
   name: string;
@@ -24,15 +25,14 @@ export interface IIssues {
   body: string;
 }
 
-const PROFILE_NAME = "rocketseat-education";
-const REPO_NAME = "reactjs-github-blog-challenge";
-
 export function Home() {
   const [profileData, setProfileData] = useState<IProfile | null>(null);
   const [issues, setIssues] = useState<IIssues[] | null>(null);
-  const [search, setSearch] = useState<string>("Boas praticas");
+  const [search, setSearch] = useState<string>("");
   const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   async function getProfileDetails() {
     setLoading(true);
@@ -74,6 +74,10 @@ export function Home() {
     debouncedSearch(searchText);
   }
 
+  function handleOnClickCard(issueId: number) {
+    navigate(`post/${issueId}`);
+  }
+
   return (
     <>
       {loading && <Loading />}
@@ -97,7 +101,11 @@ export function Home() {
 
         <s.ListCardPosts>
           {issues?.map((issue) => (
-            <CardPost item={issue} />
+            <CardPost
+              key={issue.number}
+              item={issue}
+              onClick={handleOnClickCard}
+            />
           ))}
         </s.ListCardPosts>
       </s.HomeContainer>
