@@ -88,3 +88,17 @@ export const PostInfos = styled.div`
 export const PostDetails = styled.section`
   padding: 2.5rem 2rem;
 `;
+
+export const MarkdownContent = styled.section`
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 10px 0;
+  }
+
+  img {
+    max-width: 54rem;
+  }
+`;

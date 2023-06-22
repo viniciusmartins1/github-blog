@@ -12,8 +12,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../../components/Loading";
 import { useState, useEffect } from "react";
 import { api } from "../../api";
-import remarkGfm from "remark-gfm";
 import { publishedDateRelativeToNow } from "../../utils/formatter";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 type UserIssue = {
   id: number;
@@ -53,9 +56,10 @@ export function Post() {
     }
   }, [id]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
-      {loading && <Loading />}
       <Header />
       <s.PostContainer>
         <s.PostInfoContainer>
@@ -86,7 +90,33 @@ export function Post() {
           </s.PostInfos>
         </s.PostInfoContainer>
         <s.PostDetails>
-          <ReactMarkdown children={issue.body} remarkPlugins={[remarkGfm]} />
+          <ReactMarkdown
+            children={issue.body}
+            remarkPlugins={[remarkGfm, remarkBreaks]}
+            components={{
+              code: ({ node, inline, className, children, ...props }) => {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, "")}
+                    style={coldarkDark}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+              p: ({ children }) => {
+                return (
+                  <p style={{ marginTop: 12, marginBottom: 12 }}>{children}</p>
+                );
+              },
+            }}
+          />
         </s.PostDetails>
       </s.PostContainer>
     </>
