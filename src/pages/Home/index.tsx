@@ -68,7 +68,6 @@ export function Home() {
 
   function handleOnChangeSearchInput(event: ChangeEvent<HTMLInputElement>) {
     const searchText = event.target.value;
-    if (!searchText.trim()) return;
 
     setSearch(searchText);
     debouncedSearch(searchText);

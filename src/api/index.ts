@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const PROFILE_NAME = "rocketseat-education";
-export const REPO_NAME = "reactjs-github-blog-challenge";
+const BASE_URL = "https://api.github.com";
+export const PROFILE_NAME = "viniciusmartins1";
+export const REPO_NAME = "github-blog";
+export const GITHUB_PATH_ROUTE = `${BASE_URL}/repos/${PROFILE_NAME}/${REPO_NAME}/issues`;
 
 export const api = axios.create({
-  baseURL: "https://api.github.com",
+  baseURL: BASE_URL,
 });
