@@ -11,7 +11,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../../components/Loading";
 import { useState, useEffect } from "react";
-import { api } from "../../api";
+import { GITHUB_PATH_ROUTE, api } from "../../api";
 import { publishedDateRelativeToNow } from "../../utils/formatter";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
@@ -31,9 +31,6 @@ interface IIssuePost {
   user: UserIssue;
   html_url: string;
 }
-
-const GITHUB_PATH_ROUTE =
-  "https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues";
 
 export function Post() {
   const [loading, setLoading] = useState(false);
@@ -108,11 +105,6 @@ export function Post() {
                   <code {...props} className={className}>
                     {children}
                   </code>
-                );
-              },
-              p: ({ children }) => {
-                return (
-                  <p style={{ marginTop: 12, marginBottom: 12 }}>{children}</p>
                 );
               },
             }}
